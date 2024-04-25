@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="planning">
+        <div class="item">
+            <div class="left">
+                <div class="icon">
+
+                    <i class="bi bi-thermometer-sun"></i>
+                </div>
+                <div class="data-item">
+                    <h2>Temperature</h2>
+                    <p class="value" id="Tempid">22 &#8451;</p>
+                </div>
+            </div>
+            <!-- <i class='bx bx-dots-vertical-rounded'></i> -->
+        </div>
+        <div class="item">
+            <div class="left">
+                <label for="disk_d"><i class="bi bi-thermometer-sun" style="padding: 10px;"></i>Temperature
+                    %</label>
+
+                <meter id="disk_d" value="0.2">60%</meter>
+                <br>
+                <label for="disk_c"><i class="bi bi-thermometer-sun" style="padding: 10px;"></i>Temperature
+                    Value</label>
+                <meter id="disk_c" value="2" min="0" max="10">2 out of 10</meter><br>
+
+            </div>
+            <!-- <i class='bx bx-dots-vertical-rounded'></i> -->
+        </div>
+    </div>
+    <!-- this secstion for real time data -->
+    <div class="separator" id="HumidityGet">
+        <div class="info">
+            <h3>Humidity</h3>
+            <a href="#">View All</a>
+        </div>
+        <input type="date" value="2023-10-15">
+    </div>
+    <!-- humidity -->
+    <div class="planning">
+        <div class="item">
+            <div class="left">
+                <div class="icon">
+                    <i class="bi bi-droplet-half"></i>
+                    <!-- <i class="bi bi-thermometer-sun"></i> -->
+                </div>
+                <div class="data-item">
+                    <h2>Humidity</h2>
+                    <p class="value" id="Humiid">22 &#8451;</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="item">
+            <div class="left">
+                <label for="disk_d"><i class="bi bi-droplet-half" style="padding: 10px;"></i>Humidity
+                    %</label>
+
+                <meter id="disk_d" value="0.9">60%</meter>
+                <br>
+                <label for="disk_c"><i class="bi bi-droplet-half" style="padding: 10px;"></i>Humidity
+                    Value</label>
+                <meter id="disk_c" value="2" min="0" max="10">2 out of 10</meter><br>
+
+            </div>
+            <!-- <i class='bx bx-dots-vertical-rounded'></i> -->
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration here (Do not use the existing configuration)
+            const firebaseConfig = {
+                apiKey: "AIzaSyA_gcpg-AyJlsE4BT2tsWLjaIdyKR0J3us",
+                authDomain: "weather-app-dht-11.firebaseapp.com",
+                databaseURL: "https://weather-app-dht-11-default-rtdb.firebaseio.com",
+                projectId: "weather-app-dht-11",
+                storageBucket: "weather-app-dht-11.appspot.com",
+                messagingSenderId: "83119297463",
+                appId: "1:83119297463:web:edd76224e02ec5a7830e32",
+                measurementId: "G-07MBM7C64H"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+
+            // getting reference to the database
+            var database = firebase.database();
+
+            //getting reference to the data we want
+            var dataRef1 = database.ref('DHT_11/Humidity');
+            var dataRef2 = database.ref('DHT_11/Temperature');
+
+            //fetch the data
+            dataRef1.on('value', function (getdata1) {
+                var humi = getdata1.val();
+                document.getElementById('Humiid').innerHTML = humi + "%";
+            })
+
+            dataRef2.on('value', function (getdata2) {
+                var temp = getdata2.val();
+                document.getElementById('Tempid').innerHTML = temp + "&#8451;";
+            })
+        </script>
+    </div>
+    </div>
+</body>
+</html>

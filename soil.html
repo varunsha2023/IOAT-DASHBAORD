@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Soil Moisture Data</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script>
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA-0ABWaagAdHFN_EGeN6ZRYynSy0o-f_I",
+            authDomain: "soildata-a2150.firebaseapp.com",
+            databaseURL: "https://soildata-a2150-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "soildata-a2150",
+            storageBucket: "soildata-a2150.appspot.com",
+            messagingSenderId: "702475690102",
+            appId: "1:702475690102:web:d3725a80d94dee24727f57",
+
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database(app);
+
+        function readData() {
+            const soilMoistureRef = firebase.database().ref('soilMoisture');
+            soilMoistureRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                document.getElementById("moistureValue").innerText = data;
+            });
+        }
+    </script>
+</head>
+
+<body onload="readData()">
+    <h1>Soil Moisture Data</h1>
+    <p>Soil Moisture: <span id="moistureValue">Loading...</span></p>
+</body>
+
+</html>
