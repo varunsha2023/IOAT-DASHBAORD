@@ -30,7 +30,7 @@
                     <i class='bx bx-log-out-circle'></i>
                 </button>
                 <img src="assets/logo.png">
-                <a href="#">IOAT</a>
+                <a href="#">HVAC</a>
             </div>
             <div class="sidebar" style="z-index: 100;">
                 <div class="item" id="active">
@@ -69,12 +69,12 @@
         </aside>
         <!-- <main style="background-color: aquamarine; position: relative; overflow-y: auto; "> -->
 
-        <main >
+        <main>
             <header id="head">
                 <button class="menu-btn" id="menu-open">
                     <i class='bx bx-menu'></i>
                 </button>
-                <h1>Internet of <b style="color: #006ED3;text-decoration: underline;">Agriculture</b> things</h1>
+                <h1>Smart <b style="color: #006ED3;text-decoration: underline;">HVAC</b></h1>
             </header>
 
             <div class="separator">
@@ -100,21 +100,22 @@
                     </div>
                     <i class="bi bi-thermometer-sun"></i>
                 </div>
-
-                <!-- <div class="item">
+                <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Devices</h5>
-                            <p>Controlling Devices</p>
+                            <h5>Humidity</h5>
+                            <p>RealTime %</p>
                         </div>
                         <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
                             aria-valuemax="100"></div>
                     </div>
-                    <i class='bx bxs-devices'></i>
-                </div> -->
+                    <i class="fa-solid fa-temperature-low"></i>
+                </div>
+
+
             </div>
             <!-- ##################################### -->
-            <!-- pH -->
+
             <div class="separator" id="temperatureGet">
                 <div class="info">
                     <h3>Temperature</h3>
@@ -136,22 +137,22 @@
                             <p class="value" id="Tempid">22 &#8451;</p>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="item">
                     <div class="left">
                         <div class="icon">
 
-                            <i class="bi bi-thermometer-sun"></i>
+                            <i class="fa-solid fa-temperature-low"></i>
                         </div>
                         <div class="data-item">
                             <h2>Humidity</h2>
                             <p class="value" id="Humiid">22 &#8451;</p>
                         </div>
                     </div>
-                    
+
                 </div>
-               
+
             </div>
             <!-- this secstion for real time data -->
 
@@ -168,15 +169,15 @@
 
                 // Your web app's Firebase configuration here (Do not use the existing configuration)
                 const firebaseConfig = {
-                    apiKey: "AIzaSyA_gcpg-AyJlsE4BT2tsWLjaIdyKR0J3us",
-                    authDomain: "weather-app-dht-11.firebaseapp.com",
-                    databaseURL: "https://weather-app-dht-11-default-rtdb.firebaseio.com",
-                    projectId: "weather-app-dht-11",
-                    storageBucket: "weather-app-dht-11.appspot.com",
-                    messagingSenderId: "83119297463",
-                    appId: "1:83119297463:web:edd76224e02ec5a7830e32",
-                    measurementId: "G-07MBM7C64H"
-                };
+                    apiKey: "AIzaSyDSrA05u5ygpsBUESx_xQ5DxUf6UIqsI0E",
+                    authDomain: "iot-based-smart-hvac.firebaseapp.com",
+                    databaseURL: "https://iot-based-smart-hvac-default-rtdb.firebaseio.com",
+                    projectId: "iot-based-smart-hvac",
+                    storageBucket: "iot-based-smart-hvac.appspot.com",
+                    messagingSenderId: "212004415290",
+                    appId: "1:212004415290:web:755428aeaae5a436a9d203",
+                    measurementId: "G-CTH3CV6YW8"
+                  };
 
                 // Initialize Firebase
                 firebase.initializeApp(firebaseConfig);
@@ -190,27 +191,25 @@
                 var dataRef1 = database.ref('DHT_11/Humidity');
 
                 //fetch the data
-                
+
                 dataRef2.on('value', function (getdata2) {
                     var temp = getdata2.val();
                     document.getElementById('Tempid').innerHTML = temp + "&#8451;";
-                    
+
                     dataRef1.on('value', function (getdata1) {
                         var humi = getdata1.val();
                         document.getElementById('Humiid').innerHTML = humi + "%";
                     })
-                    
+
                 })
             </script>
 
-            
+
         </main>
 
         <aside class="right-section">
             <div class="wrapper">
-                <!-- <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div> -->
-                <!-- <div class="container" style="background-color: aqua;"> -->
+
                 <div class="search-container">
                     <input type="text" placeholder="Enter a city name" id="city" value="Agra" />
                     <button id="search-btn">Search</button>
@@ -219,41 +218,7 @@
                 <div id="result"></div>
             </div>
 
-            <!-- <div class="stats">
-                <div class="item">
-                    <div class="top">
-                        <p>Efficiency of the </p>
-                        <p>Sensor</p>
-                    </div>
-                    <div class="bottom">
-                        <div class="line"></div>
-                        <h3>80%</h3>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="top">
-                        <p>Total Output of the </p>
-                        <p>Sensor</p>
-                    </div>
-                    <div class="bottom">
-                        <div class="line"></div>
-                        <h3>95%</h3>
-                    </div>
-                </div>
-            </div> -->
 
-            <!-- <div class="separator">
-                <h4>Weekly Work</h4>
-            </div>
-
-            <div class="weekly">
-                <div class="title">
-                    <div class="line"></div>
-                    <h5>Tasks This Week</h5>
-                </div>
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                </div>
-            </div> -->
 
         </aside>
 

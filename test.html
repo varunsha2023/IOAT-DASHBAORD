@@ -1,0 +1,17 @@
+<!-- In templates/fruit_delivery/fruit_list.html -->
+<html>
+    <head>
+        <title>django</title>
+    </head>
+    <body>
+
+
+
+<h1>Fruit Delivery</h1>
+<ul>
+{% for fruit in fruits %}
+    <li>{{ fruit.name }} - ${{ fruit.price }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
